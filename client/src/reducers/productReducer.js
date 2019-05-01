@@ -1,34 +1,8 @@
-import uuid from "uuid";
-
-import { GET_PRODUCTS } from "../actions/types";
+import { GET_PRODUCTS, PRODUCTS_LOADING } from "../actions/types";
 
 const inititalState = {
-  products: [
-    {
-      _id: uuid(),
-      name: "Arduino Basic",
-      product_type: 1,
-      price: 25,
-      description: "Lorem Ipsum is simply dummy text",
-      imgUrl: "http://lorempixel.com/400/200/"
-    },
-    {
-      _id: uuid(),
-      name: "Arduino Advance",
-      product_type: 1,
-      price: 30,
-      description: "Lorem Ipsum is simply dummy text",
-      imgUrl: "http://lorempixel.com/400/200/"
-    },
-    {
-      _id: uuid(),
-      name: "C sharp Basic",
-      product_type: 1,
-      price: 25,
-      description: "Lorem Ipsum is simply dummy text",
-      imgUrl: "http://lorempixel.com/400/200/"
-    }
-  ]
+  products: [],
+  loading: false
 };
 
 export default function(state = inititalState, action) {
@@ -36,7 +10,14 @@ export default function(state = inititalState, action) {
     case GET_PRODUCTS:
       return {
         ...state,
-        products: [...state.products]
+        products: action.payload,
+        loading: false
+      };
+
+    case PRODUCTS_LOADING:
+      return {
+        ...state,
+        loading: true
       };
 
     default:
