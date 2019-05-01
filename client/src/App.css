@@ -25,3 +25,49 @@
 #navbar .nav-link:hover {
   background-color: #333;
 }
+
+.item {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  position: relative;
+  margin: 50px 0;
+  border-radius: 12px;
+}
+
+.item .item-text {
+  color: rgba(255, 255, 255, 1);
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  padding: 5px;
+  height: 30px;
+  transition: height 0.5s;
+  -webkit-transition: height 0.5s;
+  -moz-transition: height 0.5s;
+}
+
+.item .item-text .price {
+  float: right;
+}
+
+.item .item-text .btn {
+  float: right;
+}
+
+.item .item-text .item-hidden {
+  opacity: 0;
+}
+
+.item:hover .item-text {
+  height: 150px;
+}
+
+.item:hover .item-text .item-hidden {
+  opacity: 1;
+}
