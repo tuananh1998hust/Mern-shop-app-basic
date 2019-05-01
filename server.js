@@ -4,6 +4,9 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+// API
+const products = require("./routes/api/products");
+
 // Keys
 const keys = require("./config/keys");
 
@@ -16,6 +19,8 @@ mongoose
 // bodyParser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use("/api/products", products);
 
 const PORT = process.env.PORT || 5000;
 
