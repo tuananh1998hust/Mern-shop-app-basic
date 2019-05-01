@@ -8,8 +8,10 @@ import {
   NavItem
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-export default class Example extends React.Component {
+class AppNavbar extends React.Component {
   constructor(props) {
     super(props);
 
@@ -46,7 +48,8 @@ export default class Example extends React.Component {
                 </NavItem>
                 <NavItem>
                   <Link className="nav-link" to="/cart">
-                    Cart
+                    <i className="fas fa-shopping-cart" /> (
+                    {this.props.product.cart.length})
                   </Link>
                 </NavItem>
               </Nav>
@@ -57,3 +60,13 @@ export default class Example extends React.Component {
     );
   }
 }
+
+AppNavbar.propTypes = {
+  product: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  product: state.product
+});
+
+export default connect(mapStateToProps)(AppNavbar);

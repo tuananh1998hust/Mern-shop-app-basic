@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Button } from "reactstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { getProducts } from "../actions/productActions";
+import { getProducts, addToCart } from "../actions/productActions";
 
 class Product extends Component {
   componentDidMount() {
     this.props.getProducts();
   }
+
+  onAddProductClick = item => {
+    this.props.addToCart(item);
+  };
 
   render() {
     const { products } = this.props.product;
@@ -28,6 +32,13 @@ class Product extends Component {
                   <br />
                   <div className="item-hidden">
                     <small>{item.description}. </small>
+                    <Button
+                      outline
+                      color="light"
+                      onClick={this.onAddProductClick.bind(this, item)}
+                    >
+                      Buy
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -41,7 +52,8 @@ class Product extends Component {
 
 Product.propTypes = {
   product: PropTypes.object.isRequired,
-  getProducts: PropTypes.func.isRequired
+  getProducts: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -50,5 +62,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProducts }
+  { getProducts, addToCart }
 )(Product);

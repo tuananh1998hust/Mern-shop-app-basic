@@ -1,5 +1,12 @@
 import React from "react";
 
-const Cart = () => <div>Cart</div>;
+// Components
+import CartDetail from "../components/CartDetail";
+
+const Cart = () => (
+  <div>
+    <CartDetail />
+  </div>
+);
 
 export default Cart;

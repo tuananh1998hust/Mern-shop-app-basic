@@ -1,8 +1,9 @@
-import { GET_PRODUCTS, PRODUCTS_LOADING } from "../actions/types";
+import { GET_PRODUCTS, PRODUCTS_LOADING, ADD_TO_CART } from "../actions/types";
 
 const inititalState = {
   products: [],
-  loading: false
+  loading: false,
+  cart: []
 };
 
 export default function(state = inititalState, action) {
@@ -18,6 +19,12 @@ export default function(state = inititalState, action) {
       return {
         ...state,
         loading: true
+      };
+
+    case ADD_TO_CART:
+      return {
+        ...state,
+        cart: [action.payload, ...state.cart]
       };
 
     default:
