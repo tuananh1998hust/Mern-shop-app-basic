@@ -1,42 +1,17 @@
 import React, { Component } from "react";
 import { Row, Col } from "reactstrap";
-import uuid from "uuid";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import { getProducts } from "../actions/productActions";
 
 class Product extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: [
-        {
-          _id: uuid(),
-          name: "Arduino Basic",
-          product_type: 1,
-          price: 25,
-          description: "Lorem Ipsum is simply dummy text",
-          imgUrl: "http://lorempixel.com/400/200/"
-        },
-        {
-          _id: uuid(),
-          name: "Arduino Advance",
-          product_type: 1,
-          price: 30,
-          description: "Lorem Ipsum is simply dummy text",
-          imgUrl: "http://lorempixel.com/400/200/"
-        },
-        {
-          _id: uuid(),
-          name: "C sharp Basic",
-          product_type: 1,
-          price: 25,
-          description: "Lorem Ipsum is simply dummy text",
-          imgUrl: "http://lorempixel.com/400/200/"
-        }
-      ]
-    };
+  componentDidMount() {
+    this.props.getProducts();
   }
 
   render() {
-    const { products } = this.state;
+    const { products } = this.props.product;
     return (
       <div id="products">
         <Row>
@@ -64,4 +39,16 @@ class Product extends Component {
   }
 }
 
-export default Product;
+Product.propTypes = {
+  product: PropTypes.object.isRequired,
+  getProducts: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  product: state.product
+});
+
+export default connect(
+  mapStateToProps,
+  { getProducts }
+)(Product);
