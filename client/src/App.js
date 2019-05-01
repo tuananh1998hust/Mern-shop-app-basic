@@ -1,10 +1,15 @@
 import React from "react";
+import { Route } from "react-router-dom";
+
+// Components
+import AppNavbar from "./components/AppNavbar";
+
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <h1>Mern Stack App</h1>
+      <AppNavbar />
     </div>
   );
 }
